@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dine Restaurant - Enter Details</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f0f0;
+      padding: 40px;
+    }
+
+    .container {
+      max-width: 500px;
+      margin: auto;
+      background: rgb(234, 211, 232);
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      text-align: center;
+      color: #9f57b1;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-top: 8px;
+      font-size: 16px;
+      border: 1px solid #e9a7f8;
+      border-radius: 5px;
+    }
+
+    button {
+      background-color: #dc77ec;
+      color: rgb(220, 217, 217);
+      padding: 12px;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 25px;
+      width: 100%;
+    }
+
+    button:hover {
+      background-color: #f463ea;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>Enter Your Details</h2>
+    <form id="detailsForm">
+      <label for="name">Full Name:</label>
+      <input type="text" id="name" required />
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" required />
+
+      <label for="phone">Phone:</label>
+      <input type="tel" id="phone" required pattern="[0-9]{10}" title="Enter 10-digit phone number" />
+
+      <button type="submit">Continue</button>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById('detailsForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+
+      if (!name || !email || !phone) {
+        alert("Please fill in all fields.");
+        return;
+      }
+
+      const bookingDetails = {
+        name,
+        email,
+        phone
+      };
+
+      // Save to localStorage
+      localStorage.setItem('bookingDetails', JSON.stringify(bookingDetails));
+
+      // Redirect to booking slot page
+      window.location.href = "city.html";
+    });
+  </script>
+</body>
+</html>
